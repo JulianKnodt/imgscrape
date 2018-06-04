@@ -1,6 +1,6 @@
 const Nightmare = require('nightmare');
 const nightmare = Nightmare({
-  show: true,
+  show: false,
   executionTimeout: 2147483647,
 });
 
@@ -9,7 +9,7 @@ if (!url) {
   console.error('No Url Passed');
   process.exit(1);
 }
-// console.log(url);
+
 
 const scrape = async (url) => {
   await new Promise((res, rej) => nightmare
@@ -25,7 +25,7 @@ const scrape = async (url) => {
       .evaluate(() => Math.max(document.documentElement.clientHeight, window.innerHeight || 0))
       .then(height => {
         return res(height);
-        }));
+      }));
 
   let imgs = []
 
