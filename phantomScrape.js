@@ -36,7 +36,7 @@ const scrape = async (url) => {
         .evaluate(() => {
           let doc = Array.from(document.querySelectorAll('img'));
           return doc.reduce((acc, n) => {
-            if (n.srcset) return acc.concat(n.src, n.srcset);
+            if (n.srcset) return acc.concat(n.src, n.srcset.split(',').filter(it => it.endsWith('640w')).map(it => it.slice(0,-5)));
             return acc.concat(n.src);
           }, []);
         })
